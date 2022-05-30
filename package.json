@@ -1,0 +1,19 @@
+{
+  "name": "cat-adoption",
+  "version": "1.0.0",
+  "description": "app to adopt a cat ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/programmerMX/cat-adoption.git"
+  },
+  "author": "Orlando Leyva",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/programmerMX/cat-adoption/issues"
+  },
+  "homepage": "https://github.com/programmerMX/cat-adoption#readme"
+}
