@@ -1,5 +1,5 @@
 //Html imports.
-import { catsContainer } from "../html/elements.js";
+import { catsContainer, favoritesContainer } from "../html/elements.js";
 
 const API_KEY = '1a7650d4-ae46-43b3-a4ba-eb34be2c2453'
 const API = 'https://api.thecatapi.com/v1'
@@ -80,5 +80,56 @@ export async function getFavorites(params) {
 
     favorites.push(...data);
 
-    console.log(favorites);
+    renderFavorites()
+}
+
+export async function renderFavorites(){
+
+    const templates = [];
+
+    const createTemplate = favorites.forEach(cat => {
+        let html = `
+            <div class="main--favorite-cat">
+                <figure class="main--favorite-cat-img-container">
+                    <img src="${cat.image.url}" alt="" class="main--favorite-cat-img">
+                </figure>
+
+                <div class="main--favorite-cat-btns-container">
+                    <button class="main--cat-btn remove-favorite-cat-btn" cat_data='${cat.id}'>
+                        Remove from favorites
+                    </button>
+                    <button class="main--cat-btn adop-cat-btn">Adopt Cat</button>
+                </div>
+            </div>
+        `
+
+        templates.push(html)
+    })
+
+    favoritesContainer.innerHTML = templates.join('');
+
+    const removeBtns = document.querySelectorAll('.remove-favorite-cat-btn');
+
+    removeBtns.forEach(btn=>{
+        btn.addEventListener('click', ()=>remove(btn.getAttribute('cat_data')))
+    })
+}
+
+
+export async function remove(id) {
+    const response = await fetch(`${API_FAVORITES}/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': API_KEY
+        }
+    })
+
+    const data = await response.json();
+
+    const favoriteIndex = favorites.findIndex(cat => cat.id === parseInt(id))
+    
+    favorites.splice(favoriteIndex, 1)
+
+    renderFavorites();
 }

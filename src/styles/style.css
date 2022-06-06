@@ -1,7 +1,16 @@
+:root{
+    --color1: #000000;
+    --color2: #192845;
+    --color3: #475891;
+    --color4: #838fe7;
+    --color5: #cdcbff;
+}
+
+
 /* Header style */
 
 .header{
-    background-color: #0a680a;
+    background-color: var(--color2);
 }
 
 .header ul{
@@ -32,7 +41,7 @@
 .header--app-description p{
     text-align: center;
     font-size: 2.4rem;
-    color: black;
+    color: white;
 }
 
 /* Main styles */
@@ -56,11 +65,11 @@
     justify-content: center;
 }
 
-.cat-btn{
+.main--cat-btn{
     margin: 0 10px;
 }
 
-.cat-btn:hover{
+.main--cat-btn:hover{
     cursor: pointer;
 }
 
